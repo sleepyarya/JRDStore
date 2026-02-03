@@ -55,7 +55,7 @@
         
         <!-- Robux Grid -->
         <div v-if="filter === 'all' || filter === 'robux'" class="mb-16">
-          <h2 v-if="filter === 'all'" class="text-3xl font-racing text-white mb-6 pl-4 border-l-4 border-jrd-purple">ROBUX LIST</h2>
+          <h2 v-if="filter === 'all'" class="text-3xl font-racing font-black text-white mb-6 pl-4 border-l-4 border-jrd-purple animate-glow-text tracking-wide">ROBUX LIST (VIA LOGIN)</h2>
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <div 
               v-for="(item, index) in robuxList" 
@@ -76,7 +76,7 @@
 
         <!-- Gamepass Grid -->
         <div v-if="filter === 'all' || filter === 'gamepass'">
-          <h2 v-if="filter === 'all'" class="text-3xl font-racing text-white mb-6 pl-4 border-l-4 border-jrd-purple">GAMEPASS LIST</h2>
+          <h2 v-if="filter === 'all'" class="text-3xl font-racing font-black text-white mb-6 pl-4 border-l-4 border-jrd-purple animate-glow-text tracking-wide">GAMEPASS LIST</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div 
               v-for="(item, index) in gamepassList" 
@@ -118,7 +118,7 @@
 
         <!-- Money Grid -->
         <div v-if="filter === 'all' || filter === 'money'">
-          <h2 v-if="filter === 'all'" class="text-3xl font-racing text-white mb-6 pl-4 border-l-4 border-jrd-purple mt-8">MONEY LIST</h2>
+          <h2 v-if="filter === 'all'" class="text-3xl font-racing font-black text-white mb-6 pl-4 border-l-4 border-jrd-purple mt-8 animate-glow-text tracking-wide">MONEY LIST</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div 
               v-for="(item, index) in moneyList" 
