@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@400;700;900&display=swap');
+
+@theme {
+  --color-jrd-purple: #9333ea;
+  --color-jrd-light-purple: #d8b4fe;
+  --color-jrd-dark: #0a0a0a;
+  --color-jrd-card: #121212;
+
+  /* Re-map existing vars to new theme to preserve some logic if needed, or just use new ones */
+  --color-jrd-red: #9333ea;
+  /* Now Purple */
+  --color-jrd-neon: #ffffff;
+  /* Now White */
+
+  --font-racing: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --animate-spin-fast: spin 0.5s linear infinite;
+  --animate-pulse-fast: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow-text: glow-text 2s ease-in-out infinite alternate;
+
+  @keyframes glow-text {
+    from {
+      text-shadow: 0 0 10px rgba(147, 51, 234, 0.5), 0 0 20px rgba(147, 51, 234, 0.3);
+    }
+
+    to {
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(147, 51, 234, 0.8), 0 0 40px rgba(147, 51, 234, 0.6);
+    }
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-jrd-dark);
+  color: #ffffff;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-jrd-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-jrd-purple);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-jrd-light-purple);
+}
+
+.font-racing {
+  font-family: var(--font-racing);
+}
