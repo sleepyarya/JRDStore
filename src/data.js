@@ -1,10 +1,10 @@
 export const robuxList = [
-    { amount: 80, price: '15.000' },
-    { amount: 160, price: '29.000' },
-    { amount: 240, price: '39.000' },
+    { amount: 80, price: '15.000', isBestSeller: true },
+    { amount: 160, price: '29.000', isBestSeller: true },
+    { amount: 240, price: '42.000' },
     { amount: 320, price: '55.000' },
     { amount: 500, price: '79.000' },
-    { amount: 660, price: '99.000' },
+    { amount: 660, price: '99.000', isBestSeller: true },
     { amount: 1000, price: '145.000' },
     { amount: 1500, price: '215.000' },
     { amount: 2000, price: '285.000' },
@@ -39,5 +39,6 @@ export const moneyList = [
 export const contacts = {
     tiktok: 'https://www.tiktok.com/@jhordi3321',
     discord: 'https://discord.gg/UY7jXz49Sz',
+    roblox: 'https://www.roblox.com/id/users/10188168383',
     whatsapp: '#' // Add if needed
 }

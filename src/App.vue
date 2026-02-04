@@ -21,6 +21,7 @@
       <div class="flex space-x-4">
         <a :href="contacts.tiktok" target="_blank" class="hover:text-jrd-purple transition-colors duration-300"><i class="fab fa-tiktok"></i> TikTok</a>
         <a :href="contacts.discord" target="_blank" class="hover:text-blue-400 transition-colors duration-300"><i class="fab fa-discord"></i> Discord</a>
+        <a :href="contacts.roblox" target="_blank" class="hover:text-gray-400 transition-colors duration-300"><i class="fas fa-gamepad"></i> Roblox Jhordi</a>
       </div>
     </nav>
 
@@ -62,6 +63,9 @@
               :key="item.amount"
               class="group relative bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-jrd-purple/50 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
             >
+              <div v-if="item.isBestSeller" class="absolute top-0 right-0 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-xs font-black px-3 py-1 rounded-bl-xl shadow-lg z-10 font-racing tracking-wider transform translate-x-[1px] -translate-y-[1px]">
+                BEST SELLER
+              </div>
               <div class="absolute inset-0 bg-gradient-to-br from-jrd-purple/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div class="p-6 text-center transform transition-transform group-hover:scale-105">
                 <div class="text-jrd-light-purple font-racing text-3xl font-bold mb-2 drop-shadow-lg">{{ item.amount }} R$</div>
