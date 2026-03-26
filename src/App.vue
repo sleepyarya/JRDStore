@@ -70,9 +70,9 @@
               <div class="p-6 text-center transform transition-transform group-hover:scale-105">
                 <div class="text-jrd-light-purple font-racing text-3xl font-bold mb-2 drop-shadow-lg">{{ item.amount }} R$</div>
                 <div class="text-gray-300 font-bold text-lg">IDR {{ item.price }}</div>
-                <a :href="contacts.tiktok" target="_blank" class="block text-center mt-4 w-full py-2 bg-white/10 hover:bg-jrd-purple hover:text-white rounded text-sm font-bold uppercase tracking-wide transition-colors">
+                <button @click="openModal(item.amount + ' R$ - IDR ' + item.price)" class="block text-center mt-4 w-full py-2 bg-white/10 hover:bg-jrd-purple hover:text-white rounded text-sm font-bold uppercase tracking-wide transition-colors cursor-pointer">
                   Beli
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -112,9 +112,9 @@
                    </div>
                  </div>
                  
-                 <a :href="contacts.tiktok" target="_blank" class="block mt-4 text-center py-3 bg-jrd-purple text-white font-black font-racing uppercase rounded hover:bg-purple-500 transition-colors shadow-lg shadow-purple-900/20">
+                 <button @click="openModal(item.name + ' - IDR ' + item.priceIdr)" class="block mt-4 w-full text-center py-3 bg-jrd-purple text-white font-black font-racing uppercase rounded hover:bg-purple-500 transition-colors shadow-lg shadow-purple-900/20 cursor-pointer">
                    ORDER NOW
-                 </a>
+                 </button>
               </div>
             </div>
           </div>
@@ -154,9 +154,9 @@
                    </div>
                  </div>
                  
-                 <a :href="contacts.tiktok" target="_blank" class="block mt-4 text-center py-3 bg-jrd-purple text-white font-black font-racing uppercase rounded hover:bg-purple-500 transition-colors shadow-lg shadow-purple-900/20">
+                 <button @click="openModal(item.name + ' - IDR ' + item.priceIdr)" class="block mt-4 w-full text-center py-3 bg-jrd-purple text-white font-black font-racing uppercase rounded hover:bg-purple-500 transition-colors shadow-lg shadow-purple-900/20 cursor-pointer">
                    ORDER NOW
-                 </a>
+                 </button>
               </div>
             </div>
           </div>
@@ -170,6 +170,64 @@
     <footer class="relative z-10 border-t border-white/10 bg-black/80 backdrop-blur text-center py-8 mt-12">
       <p class="font-racing text-gray-500">© 2026 JRD STORE. Racing to the Top.</p>
     </footer>
+
+    <!-- ===================== QRIS PAYMENT MODAL ===================== -->
+    <Transition name="modal-fade">
+      <div v-if="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-4" @click.self="closeModal">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+
+        <!-- Modal Box -->
+        <div class="relative bg-gradient-to-b from-gray-900 to-black border border-purple-500/30 rounded-2xl shadow-[0_0_60px_rgba(147,51,234,0.4)] w-full max-w-sm overflow-hidden modal-box">
+          
+          <!-- Purple glow top -->
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-jrd-purple to-transparent"></div>
+
+          <!-- Header -->
+          <div class="px-6 pt-6 pb-4 text-center">
+            <div class="text-xs font-bold uppercase tracking-widest text-purple-400 mb-1">Pembayaran</div>
+            <h2 class="text-xl font-racing font-black text-white">Scan QRIS untuk Bayar</h2>
+            <p class="text-gray-400 text-sm mt-1">{{ selectedItem }}</p>
+          </div>
+
+          <!-- QRIS Image -->
+          <div class="px-6 pb-2 flex justify-center">
+            <div class="relative">
+              <div class="absolute inset-0 rounded-xl bg-jrd-purple/20 blur-xl scale-110"></div>
+              <img src="./assets/qris.png" alt="QRIS Payment" class="relative rounded-xl w-64 h-64 object-cover shadow-2xl border border-purple-500/20 qris-img" />
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="px-6 py-3 text-center">
+            <p class="text-gray-400 text-xs">Scan QR di atas menggunakan aplikasi dompet digital kamu</p>
+          </div>
+
+          <!-- Divider -->
+          <div class="mx-6 border-t border-white/10 my-2"></div>
+
+          <!-- Action Buttons -->
+          <div class="px-6 pb-6 flex flex-col gap-3 mt-2">
+            <!-- Sudah Bayar Button -->
+            <button @click="confirmPayment" class="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 text-white font-black font-racing uppercase rounded-xl transition-all duration-300 shadow-lg shadow-green-900/30 tracking-wider hover:scale-[1.02] active:scale-95">
+              <i class="fas fa-check-circle mr-2"></i> Sudah Bayar
+            </button>
+
+            <!-- Chat TikTok Button -->
+            <a :href="contacts.tiktok" target="_blank" class="w-full py-3 flex items-center justify-center gap-2 bg-gradient-to-r from-[#010101] to-[#1a1a2e] border border-white/10 hover:border-purple-500/50 text-white font-black font-racing uppercase rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-95">
+              <i class="fab fa-tiktok text-white"></i>
+              <span>Chat TikTok</span>
+            </a>
+
+            <!-- Tutup -->
+            <button @click="closeModal" class="w-full py-2 text-gray-500 hover:text-white text-sm font-bold uppercase tracking-wider transition-colors duration-200">
+              Tutup
+            </button>
+          </div>
+        </div>
+      </div>
+    </Transition>
+
   </div>
 </template>
 
@@ -179,8 +237,124 @@ import { robuxList, gamepassList, moneyList, contacts } from './data.js'
 import LoadingScreen from './components/LoadingScreen.vue'
 
 const filter = ref('all')
+const showModal = ref(false)
+const selectedItem = ref('')
+
+function openModal(itemLabel) {
+  selectedItem.value = itemLabel
+  showModal.value = true
+  document.body.style.overflow = 'hidden'
+}
+
+function closeModal() {
+  showModal.value = false
+  document.body.style.overflow = ''
+}
+
+function confirmPayment() {
+  closeModal()
+  window.open(contacts.tiktok, '_blank')
+}
 </script>
 
 <style>
 /* Custom animations if needed */
+
+/* ===== Modal Transition ===== */
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.modal-fade-enter-active .modal-box,
+.modal-fade-leave-active .modal-box {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+.modal-fade-enter-from .modal-box {
+  transform: scale(0.8) translateY(30px);
+  opacity: 0;
+}
+.modal-fade-leave-to .modal-box {
+  transform: scale(0.9) translateY(20px);
+  opacity: 0;
+}
+
+/* QRIS pulse animation */
+.qris-img {
+  animation: qris-pulse 2.5s ease-in-out infinite;
+}
+@keyframes qris-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(147, 51, 234, 0); }
+}
+
+/* ===== Success Animation ===== */
+.success-fade-enter-active,
+.success-fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+.success-fade-enter-from,
+.success-fade-leave-to {
+  opacity: 0;
+}
+
+.success-popup {
+  animation: popup-bounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes popup-bounce {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.success-circle {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(16,185,129,0.3), transparent 70%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 24px rgba(16, 185, 129, 0.8));
+}
+
+.checkmark {
+  width: 80px;
+  height: 80px;
+}
+
+.checkmark-circle {
+  stroke: #10b981;
+  stroke-width: 2;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+  stroke: #10b981;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+}
+
+@keyframes stroke {
+  100% { stroke-dashoffset: 0; }
+}
+
+.success-text {
+  animation: fade-up 0.5s ease 0.4s both;
+}
+.success-subtext {
+  animation: fade-up 0.5s ease 0.6s both;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 </style>
