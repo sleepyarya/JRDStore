@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="#07000d"/>
+  <text x="50%" y="45%" font-family="Arial, sans-serif" font-weight="bold" font-style="italic" font-size="50" fill="#d8b4fe" text-anchor="middle" dominant-baseline="middle" filter="url(#glow)">
+    DDS
+  </text>
+  <text x="50%" y="75%" font-family="Arial, sans-serif" font-weight="bold" font-style="italic" font-size="40" fill="#d946ef" text-anchor="middle" dominant-baseline="middle" filter="url(#glow)">
+    E-KTP
+  </text>
+</svg>
