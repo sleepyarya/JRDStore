@@ -106,7 +106,7 @@
         <!-- KTP TAB -->
         <div v-else-if="activeTab === 'ktp'" class="w-full max-w-3xl flex justify-center perspective-1000" style="will-change: transform, opacity;">
           <!-- KTP Card design -->
-          <div class="w-full relative aspect-[1.586/1] bg-gradient-to-br from-[#c4e0ff] via-[#d6e8ff] to-[#a3cfff] rounded-xl sm:rounded-3xl shadow-[0_15px_30px_rgba(147,51,234,0.4),0_0_20px_rgba(217,70,239,0.2)] sm:shadow-[0_30px_60px_rgba(147,51,234,0.4),0_0_40px_rgba(217,70,239,0.2)] border-2 sm:border-4 border-white/80 overflow-hidden text-[#111] p-3 sm:p-6 md:p-10 flex flex-col transform transition-transform hover:rotate-y-2 hover:rotate-x-2 hover:scale-[1.02] duration-300 group will-change-transform">
+          <div class="w-full relative aspect-[1.586/1] bg-gradient-to-br from-[#c4e0ff] via-[#d6e8ff] to-[#a3cfff] rounded-xl sm:rounded-3xl shadow-[0_15px_30px_rgba(147,51,234,0.4),0_0_20px_rgba(217,70,239,0.2)] sm:shadow-[0_30px_60px_rgba(147,51,234,0.4),0_0_40px_rgba(217,70,239,0.2)] border-2 sm:border-4 border-white/80 overflow-hidden text-[#111] p-4 sm:p-6 md:p-10 flex flex-col justify-center transform transition-transform hover:rotate-y-2 hover:rotate-x-2 hover:scale-[1.02] duration-300 group will-change-transform">
             
             <!-- Background pattern -->
             <div class="absolute inset-0 opacity-15 pointer-events-none mix-blend-overlay" style="background-image: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%); background-size: 8px 8px; sm:background-size: 12px 12px; will-change: transform;"></div>
@@ -115,19 +115,19 @@
             <div class="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none mix-blend-color-dodge bg-gradient-to-tr from-transparent via-purple-300 to-transparent" style="will-change: opacity;"></div>
 
             <!-- Header -->
-            <div class="text-center mb-2 sm:mb-6 relative z-10 border-b border-black/10 sm:border-b-2 pb-1 sm:pb-2">
-              <h2 class="text-[10px] sm:text-xl md:text-2xl font-black tracking-widest uppercase leading-tight">PROVINSI JAWA TIMUR</h2>
-              <h3 class="text-[8px] sm:text-lg md:text-xl font-bold tracking-wider uppercase leading-tight">KOTA MALANG</h3>
+            <div class="text-center mb-3 sm:mb-6 relative z-10 border-b border-black/10 sm:border-b-2 pb-1.5 sm:pb-2">
+              <h2 class="text-xs sm:text-xl md:text-2xl font-black tracking-widest uppercase leading-tight">PROVINSI JAWA TIMUR</h2>
+              <h3 class="text-[10px] sm:text-lg md:text-xl font-bold tracking-wider uppercase leading-tight">KOTA MALANG</h3>
             </div>
             
             <!-- Body -->
-            <div class="flex gap-2 sm:gap-4 md:gap-8 flex-1 relative z-10">
+            <div class="flex gap-3 sm:gap-4 md:gap-8 flex-1 relative z-10">
               <!-- Text Info -->
-              <div class="flex-1 flex flex-col text-[7px] sm:text-sm md:text-base font-bold gap-1 sm:gap-2 md:gap-3 font-mono">
+              <div class="flex-1 flex flex-col text-[10px] sm:text-sm md:text-base font-bold gap-1.5 sm:gap-2 md:gap-3 font-mono">
                 <div class="flex mt-1 sm:mt-2 items-center">
                   <span class="w-16 sm:w-28 md:w-40 uppercase">NIK</span>
                   <span class="mr-1 sm:mr-3">:</span>
-                  <span class="text-[10px] sm:text-2xl md:text-3xl tracking-[0.1em] sm:tracking-[0.2em] font-black text-black">3321</span>
+                  <span class="text-xs sm:text-2xl md:text-3xl tracking-[0.1em] sm:tracking-[0.2em] font-black text-black">3321</span>
                 </div>
                 
                 <div class="flex mt-1 sm:mt-3">
@@ -162,13 +162,13 @@
               </div>
 
               <!-- Photo & Signature Area -->
-              <div class="w-16 sm:w-32 md:w-44 flex flex-col items-center gap-1 sm:gap-3 shrink-0">
+              <div class="w-20 sm:w-32 md:w-44 flex flex-col items-center gap-1.5 sm:gap-3 shrink-0">
                 <!-- Pas Foto Sebatas Dada -->
                 <div class="w-full aspect-[3/4] rounded sm:rounded-lg border sm:border-2 border-white/50 overflow-hidden bg-gray-400 shadow-md sm:shadow-xl relative z-10">
                   <img src="/ktp-crop.png" alt="Pas Foto" class="w-full h-full object-cover object-top grayscale-[30%] contrast-110 sepia-[10%] will-change-transform" />
                 </div>
                 <!-- Signature Loc & Date -->
-                <div class="text-[5px] sm:text-[10px] md:text-xs text-center font-bold font-mono uppercase mt-1">
+                <div class="text-[7px] sm:text-[10px] md:text-xs text-center font-bold font-mono uppercase mt-1">
                   <div>KOTA MALANG</div>
                   <div>23-12-2025</div>
                 </div>
